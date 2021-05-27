@@ -19,5 +19,39 @@ public interface STypeI {
 
     SBinary toBinary();
 
+    STypeI plus(STypeI obj);
 
+    STypeI minus(STypeI obj);
+
+    STypeI div(STypeI obj);
+
+    STypeI mul(STypeI obj);
+
+    STypeI not();
+
+    STypeI and(STypeI obj);
+
+    STypeI or(STypeI obj);
+
+    SString sumWithString(String value);
+
+    STypeI andWithBool(boolean Value);
+
+    STypeI orWithBool(boolean Value);
+
+    SBinary andWithBinary(String Value);
+
+    SBinary orWithBinary(String Value);
+
+    STypeI sumWithBinary(int Value, int mode);
+
+    STypeI mulWithBinary(int Value, int mode);
+
+    STypeI sumWithInteger(int Value, int mode);
+
+    STypeI mulWithInteger(int Value, int mode);
+
+    STypeI sumWithFloat(double Value, int mode);
+
+    STypeI mulWithFloat(double Value, int mode);
 }

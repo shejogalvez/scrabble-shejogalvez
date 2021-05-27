@@ -12,25 +12,8 @@ public class SBinary extends AbstractType{
         return value;
     }
 
-
-    public SString toSString() {
-        return new SString(value);
-    }
-
-    @Override
-    public SFloat toFloat(){
-        int len = value.length();
-        double result = 0.0;
-        for (int i=len; i>0; i--){
-            if (value.charAt(i-1) == '1'){
-                result += Math.pow(2, len-i);
-            }
-        }
-        return new SFloat(result);
-    }
-
-    @Override
-    public SInt toInt(){
+    // converts binary value to an int
+    private int valueToInt(){
         int len = value.length();
         int result = 0;
         for (int i=len; i>0; i--){
@@ -38,12 +21,57 @@ public class SBinary extends AbstractType{
                 result += Math.pow(2, len-i);
             }
         }
-        return new SInt(result);
+        return result;
+    }
+
+
+    public SString toSString() {
+        return new SString(value);
+    }
+
+    @Override
+    public SFloat toFloat(){
+        return new SFloat(valueToInt());
+    }
+
+    @Override
+    public SInt toInt(){
+        return new SInt(valueToInt());
     }
 
     @Override
     public SBinary toBinary(){
         return this;
+    }
+
+
+    /**
+     * transformations
+     */
+
+    @Override
+    public STypeI plus(STypeI obj) {
+        return obj.mulWithBinary(valueToInt(), 1);
+    }
+
+    @Override
+    public STypeI minus(STypeI obj) {
+        return obj.mulWithBinary(valueToInt(), -1);
+    }
+
+    @Override
+    public STypeI div(STypeI obj) {
+        return obj.mulWithBinary(valueToInt(), -1);
+    }
+
+    @Override
+    public STypeI mul(STypeI obj) {
+        return obj.mulWithBinary(valueToInt(), 1);
+    }
+
+    @Override
+    public SString sumWithString(String value) {
+        return new SString(value + this.value);
     }
 
 }
