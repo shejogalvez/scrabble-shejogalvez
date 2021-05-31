@@ -1,8 +1,6 @@
 package cl.uchile.dcc.scrabble.model;
 
-import java.util.concurrent.Callable;
-
-public class SBool extends AbstractType{
+public class SBool extends AbstractType implements LogicTypeI{
 
     private boolean value;
 
@@ -27,15 +25,19 @@ public class SBool extends AbstractType{
     /**
      * transformations
      */
-
     @Override
-    public STypeI and(STypeI obj){
-        return andWithBool(value);
+    public LogicTypeI not(){
+        return new SBool(!value);
     }
 
     @Override
-    public STypeI or(STypeI obj){
-        return orWithBool(value);
+    public LogicTypeI and(LogicTypeI obj){
+        return obj.andWithBool(value);
+    }
+
+    @Override
+    public LogicTypeI or(LogicTypeI obj){
+        return obj.orWithBool(value);
     }
 
     @Override
@@ -44,7 +46,42 @@ public class SBool extends AbstractType{
     }
 
     @Override
-    public STypeI andWithBool(boolean value){
+    public LogicTypeI andWithBool(boolean value){
         return new SBool(value & this.value);
+    }
+
+    @Override
+    public LogicTypeI orWithBool(boolean value) {
+        return new SBool(value & this.value);
+    }
+
+    @Override
+    public SBinary andWithBinary(String value){
+        int len = value.length();
+        StringBuilder result = new StringBuilder();
+        if (this.value) {
+            return new SBinary(value);
+        }
+        else{
+            for (int i = len; i > 0; i--) {
+                result.insert(0, '0');
+            }
+        }
+        return new SBinary(result.toString());
+    }
+
+    @Override
+    public SBinary orWithBinary(String value){
+        int len = value.length();
+        StringBuilder result = new StringBuilder();
+        if (this.value) {
+            for (int i = len; i > 0; i--) {
+                result.insert(0, '1');
+            }
+        }
+        else{
+            return new SBinary(value);
+        }
+        return new SBinary(result.toString());
     }
 }

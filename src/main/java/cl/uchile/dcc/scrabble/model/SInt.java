@@ -12,6 +12,19 @@ public class SInt extends AbstractType{
         return value;
     }
 
+    public static String intToBinary(int value){
+        StringBuilder result = new StringBuilder();
+        int i = value;
+        while (i > 0){
+            result.insert(0, i % 2);
+            i /= 2;
+        }
+        if (result.toString().equals("")) {
+            return "0";
+        }
+        return result.toString();
+    }
+
     /**
      * transformations
      */
@@ -28,6 +41,11 @@ public class SInt extends AbstractType{
     @Override
     public SInt toInt(){
         return this;
+    }
+
+    @Override
+    public SBinary toBinary(){
+        return new SBinary(intToBinary(value));
     }
 
     /**
@@ -61,12 +79,12 @@ public class SInt extends AbstractType{
 
     @Override
     public STypeI sumWithBinary(int value, int mode) {
-        return null;
+        return new SBinary(intToBinary(value + (this.value * mode)));
     }
 
     @Override
     public STypeI mulWithBinary(int value, int mode) {
-        return null;
+        return new SBinary(intToBinary((int) (value * Math.pow(this.value, mode))));
     }
 
     @Override

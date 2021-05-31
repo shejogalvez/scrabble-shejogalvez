@@ -38,12 +38,12 @@ public class SFloat extends AbstractType {
 
     @Override
     public STypeI div(STypeI obj) {
-        return obj.sumWithFloat(value, -1);
+        return obj.mulWithFloat(value, -1);
     }
 
     @Override
     public STypeI mul(STypeI obj) {
-        return obj.sumWithFloat(value, 1);
+        return obj.mulWithFloat(value, 1);
     }
 
     @Override
@@ -68,6 +68,6 @@ public class SFloat extends AbstractType {
 
     @Override
     public STypeI mulWithFloat(double value, int mode) {
-        return new SFloat(value + this.value * mode);
+        return new SFloat(value * Math.pow(this.value, mode));
     }
 }

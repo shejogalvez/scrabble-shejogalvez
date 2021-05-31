@@ -54,41 +54,6 @@ public abstract class AbstractType implements STypeI{
     }
 
     @Override
-    public STypeI not() {
-        return null;
-    }
-
-    @Override
-    public STypeI and(STypeI obj) {
-        return null;
-    }
-
-    @Override
-    public STypeI or(STypeI obj) {
-        return null;
-    }
-
-    @Override
-    public STypeI andWithBool(boolean Value) {
-        return null;
-    }
-
-    @Override
-    public STypeI orWithBool(boolean Value) {
-        return null;
-    }
-
-    @Override
-    public SBinary andWithBinary(String Value) {
-        return null;
-    }
-
-    @Override
-    public SBinary orWithBinary(String Value) {
-        return null;
-    }
-
-    @Override
     public STypeI sumWithBinary(int Value, int mode) {
         return null;
     }

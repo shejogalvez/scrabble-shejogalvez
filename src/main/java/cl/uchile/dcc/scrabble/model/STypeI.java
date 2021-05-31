@@ -19,6 +19,10 @@ public interface STypeI {
 
     SBinary toBinary();
 
+    /**
+     * functions expected to be used as operations
+     */
+
     STypeI plus(STypeI obj);
 
     STypeI minus(STypeI obj);
@@ -27,21 +31,11 @@ public interface STypeI {
 
     STypeI mul(STypeI obj);
 
-    STypeI not();
-
-    STypeI and(STypeI obj);
-
-    STypeI or(STypeI obj);
+    /**
+     * used for double-dispatch only
+     */
 
     SString sumWithString(String value);
-
-    STypeI andWithBool(boolean Value);
-
-    STypeI orWithBool(boolean Value);
-
-    SBinary andWithBinary(String Value);
-
-    SBinary orWithBinary(String Value);
 
     STypeI sumWithBinary(int Value, int mode);
 

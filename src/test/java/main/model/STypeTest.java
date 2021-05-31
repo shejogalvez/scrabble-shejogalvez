@@ -12,7 +12,7 @@ public class STypeTest {
      */
 
     SString texto = new SString("hello world");
-    SInt entero = new SInt(27);
+    SInt entero = new SInt(29);
     SFloat flotante = new SFloat(4.20);
     SBool booleano = new SBool(true);
     SBinary binario = new SBinary("100100101");
@@ -55,18 +55,16 @@ public class STypeTest {
 
         SString intToString = entero.toSString();
         assertEquals(texto.getClass(), intToString.getClass());
-        assertEquals("27", intToString.getValue());
-
-        /*
-        todavia no existe el intToBinary
+        assertEquals("29", intToString.getValue());
 
         SBinary intToBinary = entero.toBinary();
         assertEquals(binario.getClass(), intToBinary.getClass());
-        */
+        assertEquals("11101", intToBinary.getValue());
+
 
         SFloat intToFloat = entero.toFloat();
         assertEquals(flotante.getClass(), intToFloat.getClass());
-        assertEquals(27.0, intToFloat.getValue());
+        assertEquals(29.0, intToFloat.getValue());
 
     }
 
