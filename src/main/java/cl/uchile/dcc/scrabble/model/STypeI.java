@@ -19,5 +19,33 @@ public interface STypeI {
 
     SBinary toBinary();
 
+    // Operations
+    STypeI plus(STypeI obj);
 
+    STypeI minus(STypeI obj);
+
+    STypeI div(STypeI obj);
+
+    STypeI mul(STypeI obj);
+
+    /*
+     * used for double-dispatch only
+
+     * double dispatch functions
+     * (operation)With(type): defines what to do when (operated) with (type).
+     */
+
+    SString sumWithString(String value);
+
+    STypeI sumWithBinary(int Value, int mode);
+
+    STypeI mulWithBinary(int Value, int mode);
+
+    STypeI sumWithInteger(int Value, int mode);
+
+    STypeI mulWithInteger(int Value, int mode);
+
+    STypeI sumWithFloat(double Value, int mode);
+
+    STypeI mulWithFloat(double Value, int mode);
 }
