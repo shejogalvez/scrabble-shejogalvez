@@ -1,5 +1,8 @@
 package cl.uchile.dcc.scrabble.model;
 
+/**
+ * class that represents a String with a String value
+ */
 public class SString extends AbstractType{
 
     private String value;

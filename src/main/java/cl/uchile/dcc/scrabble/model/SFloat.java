@@ -1,5 +1,8 @@
 package cl.uchile.dcc.scrabble.model;
 
+/**
+ * class that represents a real number with a double value
+ */
 public class SFloat extends AbstractType {
 
     private double value;
@@ -12,6 +15,9 @@ public class SFloat extends AbstractType {
         return value;
     }
 
+    /**
+     * transformations
+     */
     @Override
     public SString toSString(){
         return new SString(Double.toString(value));
@@ -23,9 +29,11 @@ public class SFloat extends AbstractType {
     }
 
     /**
-     * transformations
+     * plus, minus, mul, div
+     * operates with another numerical object to return non null
+     * @param obj any SType
+     * @return SFloat
      */
-
     @Override
     public STypeI plus(STypeI obj) {
         return obj.sumWithFloat(value, 1);

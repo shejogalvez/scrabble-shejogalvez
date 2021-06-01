@@ -83,32 +83,35 @@ public class OperationsTest {
         assertNull(binario.plus(texto));
 
         assertEquals(binario.getClass(), binario.plus(entero).getClass());
-        assertEquals("101000010", ((SBinary) binario.plus(entero)).getValue());
+        assertEquals(SInt.intToBinary(29+293), ((SBinary) binario.plus(entero)).getValue());
 
         assertNull(binario.plus(flotante));
 
         assertNull(binario.plus(booleano));
 
         assertEquals(binario.getClass(), binario.plus(binario).getClass());
-        assertEquals("1001001010", ((SBinary) binario.plus(binario)).getValue());
+        assertEquals(SInt.intToBinary(293+293), ((SBinary) binario.plus(binario)).getValue());
 
         //resta
         assertEquals(binario.getClass(), binario.minus(entero).getClass());
-        assertEquals("100001000", ((SBinary) binario.minus(entero)).getValue());
+        assertEquals(SInt.intToBinary(293-29), ((SBinary) binario.minus(entero)).getValue());
 
         assertEquals(binario.getClass(), binario.minus(binario).getClass());
         assertEquals("0", ((SBinary) binario.minus(binario)).getValue());
 
+        SInt bigInt = new SInt(2000);
+        assertEquals("0", ((SBinary) binario.minus(bigInt)).getValue());
+
         //multiplicacion
         assertEquals(binario.getClass(), binario.mul(entero).getClass());
-        assertEquals("10000100110001", ((SBinary) binario.mul(entero)).getValue());
+        assertEquals(SInt.intToBinary(29*293), ((SBinary) binario.mul(entero)).getValue());
 
         assertEquals(binario.getClass(), binario.mul(binario).getClass());
-        assertEquals("10100111101011001", ((SBinary) binario.mul(binario)).getValue());
+        assertEquals(SInt.intToBinary(293*293), ((SBinary) binario.mul(binario)).getValue());
 
         //division
         assertEquals(binario.getClass(), binario.div(entero).getClass());
-        assertEquals("1010", ((SBinary)binario.div(entero)).getValue());
+        assertEquals(SInt.intToBinary(293/29), ((SBinary)binario.div(entero)).getValue());
 
         assertEquals(binario.getClass(), binario.div(binario).getClass());
         assertEquals("1", ((SBinary)binario.div(binario)).getValue());
@@ -173,6 +176,9 @@ public class OperationsTest {
         assertEquals("100100101", ((SBinary)booleano.and(binario)).getValue());
 
         assertEquals("111111111", ((SBinary)booleano.or(binario)).getValue());
+
+        SBool not = new SBool(false);
+        assertEquals("000000000", ((SBinary)not.and(binario)).getValue());
 
         assertFalse(((SBool) booleano.not()).getValue());
     }

@@ -14,3 +14,16 @@ _University of Chile_.
 ---
 
 **The rest of the documentation is left for the users of this template to complete**
+
+Para modelar el problema se crean los distintos tipos de objetos de Scarbble como distintas clases, estas clases extienden
+a una clase abstracta que a su vez implementa la interfaz SType.
+
+en esta interfaz se definen los metodos de transformacion y operaciones que se piden, notando que hay solo un grupo
+especifico donde los operadores logicos tienen efecto, se crea una nueva interfaz LogicType que son implementados por
+el tipo SBoolean y SBinary, para ordenar el modelo.
+
+en cada clase se especifica el funcionamiento de los metodos particulares de cada tipo y en la clase abstracta se define
+el retorno por defecto de cada metodo nulo, para ordenar.
+
+SBinary actualmente solo codifica un número entero positivo de largo arbitrario, si de una operación resulta un binario
+con valor negativo retorna un binario con valor '0' instead.

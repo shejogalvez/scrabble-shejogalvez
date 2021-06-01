@@ -1,5 +1,9 @@
 package cl.uchile.dcc.scrabble.model;
 
+/**
+ * creates an object of type bool
+ * value can be true or false
+ */
 public class SBool extends AbstractType implements LogicTypeI{
 
     private boolean value;
@@ -12,6 +16,9 @@ public class SBool extends AbstractType implements LogicTypeI{
         return value;
     }
 
+    /**
+     * transformations
+     */
     @Override
     public SString toSString(){
         return new SString(Boolean.toString(value));
@@ -23,7 +30,7 @@ public class SBool extends AbstractType implements LogicTypeI{
     }
 
     /**
-     * transformations
+     * Operations
      */
     @Override
     public LogicTypeI not(){

@@ -1,5 +1,8 @@
 package cl.uchile.dcc.scrabble.model;
 
+/**
+ * class that represents a integer with an integer value
+ */
 public class SInt extends AbstractType{
 
     private int value;
@@ -12,6 +15,11 @@ public class SInt extends AbstractType{
         return value;
     }
 
+    /**
+     * turns an integer into a SBinary value String, "0" if value <= 0
+     * @param value number to be transformed
+     * @return String of 1's and 0's
+     */
     public static String intToBinary(int value){
         StringBuilder result = new StringBuilder();
         int i = value;
@@ -49,9 +57,8 @@ public class SInt extends AbstractType{
     }
 
     /**
-     * transformations
+     * Operations
      */
-
     @Override
     public STypeI plus(STypeI obj) {
         return obj.sumWithInteger(value, 1);

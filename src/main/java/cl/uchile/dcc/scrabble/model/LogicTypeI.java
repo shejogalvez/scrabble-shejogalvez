@@ -7,6 +7,24 @@ package cl.uchile.dcc.scrabble.model;
 
 public interface LogicTypeI extends STypeI {
 
+    /**
+     * Operations
+     */
+
+    LogicTypeI not();
+
+    LogicTypeI and(LogicTypeI obj);
+
+    LogicTypeI or(LogicTypeI obj);
+
+
+    /**
+     * used for double-dispatch only
+
+     * double dispatch functions
+     * (operation)With(type): defines what to do when (operated) with (type).
+     */
+
     LogicTypeI andWithBool(boolean Value);
 
     LogicTypeI orWithBool(boolean Value);
@@ -14,10 +32,4 @@ public interface LogicTypeI extends STypeI {
     SBinary andWithBinary(String Value);
 
     SBinary orWithBinary(String Value);
-
-    LogicTypeI not();
-
-    LogicTypeI and(LogicTypeI obj);
-
-    LogicTypeI or(LogicTypeI obj);
 }

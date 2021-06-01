@@ -1,9 +1,9 @@
 package cl.uchile.dcc.scrabble.model;
 
+/**
+ * class that represents a positive integer with a String of 0's and 1's as value
+ */
 public class SBinary extends AbstractType implements LogicTypeI{
-    /**
-     * class that represents a positive integer with a binary number String
-     */
 
     private String value;
 
@@ -27,7 +27,7 @@ public class SBinary extends AbstractType implements LogicTypeI{
         return result;
     }
 
-
+    @Override
     public SString toSString() {
         return new SString(value);
     }
@@ -49,30 +49,59 @@ public class SBinary extends AbstractType implements LogicTypeI{
 
 
     /**
-     * transformations
+     * Operations
      */
 
     //numerical
+
+    /**
+     * adds numerically itself with another binary or with an integer returning
+     * another binary, if not returns null
+     * @param obj : any SType object.
+     * @return SBinary
+     */
     @Override
     public STypeI plus(STypeI obj) {
         return obj.sumWithBinary(valueToInt(), 1);
     }
 
+    /**
+     * subtracts numerically itself with another binary or with an integer returning
+     * another binary, if not returns null
+     * @param obj : any SType object.
+     * @return SBinary
+     */
     @Override
     public STypeI minus(STypeI obj) {
         return obj.sumWithBinary(valueToInt(), -1);
     }
 
+    /**
+     * divides numerically itself with another binary or with an integer returning
+     * another binary, if not returns null
+     * @param obj : any SType object.
+     * @return SBinary
+     */
     @Override
     public STypeI div(STypeI obj) {
         return obj.mulWithBinary(valueToInt(), -1);
     }
 
+    /**
+     * multiplies numerically itself with another binary or with an integer returning
+     * a binary, if not returns null
+     * @param obj : any SType object.
+     * @return SBinary
+     */
     @Override
     public STypeI mul(STypeI obj) {
         return obj.mulWithBinary(valueToInt(), 1);
     }
 
+    /**
+     * double dispatch functions
+     * (operation)With(type): defines what to do when (operated) with (type).
+     */
     @Override
     public SString sumWithString(String value) {
         return new SString(value + this.value);
@@ -113,6 +142,11 @@ public class SBinary extends AbstractType implements LogicTypeI{
     }
 
     //logical
+
+    /**
+     * changes every bit of own value and returns another SBinary
+     * @return SBinary
+     */
     @Override
     public LogicTypeI not(){
         int len = value.length();
@@ -127,16 +161,31 @@ public class SBinary extends AbstractType implements LogicTypeI{
         return new SBinary(result.toString());
     }
 
+    /**
+     * applies and with bool value and every bit creating new SBinary
+     * @param obj : SBinary or SBool
+     * @return SBinary
+     */
     @Override
     public LogicTypeI and(LogicTypeI obj){
         return obj.andWithBinary(value);
     }
 
+    /**
+     * applies or with bool value and every bit creating new SBinary
+     * @param obj : SBinary or SBool
+     * @return SBinary
+     */
     @Override
     public LogicTypeI or(LogicTypeI obj){
         return obj.orWithBinary(value);
     }
 
+
+    /**
+     * double dispatch functions
+     * (operation)With(type): defines what to do when (operated) with (type).
+     */
     @Override
     public LogicTypeI andWithBool(boolean value){
         int len = this.value.length();
