@@ -1,4 +1,4 @@
-package cl.uchile.dcc.scrabble.model;
+package cl.uchile.dcc.scrabble.model.types;
 
 /**
  * interface that encapsulates all specific methods for logic type objects
@@ -11,11 +11,11 @@ public interface LogicTypeI extends STypeI {
      * Operations
      */
 
-    LogicTypeI not();
+    STypeI not();
 
-    LogicTypeI and(LogicTypeI obj);
+    STypeI and(STypeI obj);
 
-    LogicTypeI or(LogicTypeI obj);
+    STypeI or(STypeI obj);
 
 
     /**

@@ -1,4 +1,7 @@
-package cl.uchile.dcc.scrabble.model;
+package cl.uchile.dcc.scrabble.model.types;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * Abstract class that contains recurrent outputs of SType functions to avoid to copy code
@@ -54,6 +57,21 @@ public abstract class AbstractType implements STypeI{
     }
 
     @Override
+    public STypeI and(STypeI obj){
+        return null;
+    }
+
+    @Override
+    public STypeI or(STypeI obj){
+        return null;
+    }
+
+    @Override
+    public STypeI not(){
+        return null;
+    }
+
+    @Override
     public STypeI sumWithBinary(int Value, int mode) {
         return null;
     }
@@ -83,4 +101,18 @@ public abstract class AbstractType implements STypeI{
         return null;
     }
 
+    @Override
+    public STypeI solve(){
+        return this;
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
+    }
 }

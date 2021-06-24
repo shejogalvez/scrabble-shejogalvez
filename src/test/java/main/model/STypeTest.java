@@ -1,6 +1,6 @@
 package main.model;
 
-import cl.uchile.dcc.scrabble.model.*;
+import cl.uchile.dcc.scrabble.model.types.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
