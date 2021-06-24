@@ -1,4 +1,4 @@
-package cl.uchile.dcc.scrabble.model;
+package cl.uchile.dcc.scrabble.model.types;
 
 /**
  * class that represents a integer with an integer value

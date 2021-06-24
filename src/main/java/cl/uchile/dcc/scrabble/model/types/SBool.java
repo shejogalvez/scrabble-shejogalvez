@@ -1,4 +1,4 @@
-package cl.uchile.dcc.scrabble.model;
+package cl.uchile.dcc.scrabble.model.types;
 
 /**
  * creates an object of type bool
@@ -38,13 +38,13 @@ public class SBool extends AbstractType implements LogicTypeI{
     }
 
     @Override
-    public LogicTypeI and(LogicTypeI obj){
-        return obj.andWithBool(value);
+    public STypeI and(STypeI obj){
+        return ((LogicTypeI)obj).andWithBool(value);
     }
 
     @Override
-    public LogicTypeI or(LogicTypeI obj){
-        return obj.orWithBool(value);
+    public STypeI or(STypeI obj){
+        return ((LogicTypeI)obj).orWithBool(value);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class SBool extends AbstractType implements LogicTypeI{
 
     @Override
     public LogicTypeI orWithBool(boolean value) {
-        return new SBool(value & this.value);
+        return new SBool(value || this.value);
     }
 
     @Override

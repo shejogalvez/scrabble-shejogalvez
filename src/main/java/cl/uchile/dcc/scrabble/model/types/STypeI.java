@@ -1,7 +1,9 @@
-package cl.uchile.dcc.scrabble.model;
+package cl.uchile.dcc.scrabble.model.types;
 
 
-public interface STypeI {
+import cl.uchile.dcc.scrabble.model.tree.NodeI;
+
+public interface STypeI extends NodeI {
 
     /**
      * to(Type) : tries to transform itself (make another object) to the desired Type
@@ -28,6 +30,12 @@ public interface STypeI {
 
     STypeI mul(STypeI obj);
 
+    STypeI and(STypeI obj);
+
+    STypeI or(STypeI obj);
+
+    STypeI not();
+
     /*
      * used for double-dispatch only
 
@@ -48,4 +56,8 @@ public interface STypeI {
     STypeI sumWithFloat(double Value, int mode);
 
     STypeI mulWithFloat(double Value, int mode);
+
+    // tree
+
+    STypeI solve();
 }

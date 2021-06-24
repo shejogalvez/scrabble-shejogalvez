@@ -1,4 +1,4 @@
-package cl.uchile.dcc.scrabble.model;
+package cl.uchile.dcc.scrabble.model.types;
 
 /**
  * class that represents a positive integer with a String of 0's and 1's as value
@@ -167,8 +167,8 @@ public class SBinary extends AbstractType implements LogicTypeI{
      * @return SBinary
      */
     @Override
-    public LogicTypeI and(LogicTypeI obj){
-        return obj.andWithBinary(value);
+    public STypeI and(STypeI obj){
+        return ((LogicTypeI)obj).andWithBinary(value);
     }
 
     /**
@@ -177,8 +177,8 @@ public class SBinary extends AbstractType implements LogicTypeI{
      * @return SBinary
      */
     @Override
-    public LogicTypeI or(LogicTypeI obj){
-        return obj.orWithBinary(value);
+    public STypeI or(STypeI obj){
+        return ((LogicTypeI)obj).orWithBinary(value);
     }
 
 
@@ -216,14 +216,51 @@ public class SBinary extends AbstractType implements LogicTypeI{
         return new SBinary(result.toString());
     }
 
+    /**
+     * andWithBinary always returns a SBinary with value length equal to the smaller binary
+     */
     @Override
     public SBinary andWithBinary(String Value) {
-        return null;
+        // does bit by bit and
+        int n = Math.min(Value.length(), value.length());
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < n; i++){
+            if (value.charAt(value.length() -i -1) == '1' && Value.charAt(Value.length()-i -1) == '1') {
+                result.insert(0, '1');
+            } else {
+                result.insert(0, '0');
+            }
+        }
+        // when cant make comparison the rest are zeros
+        return new SBinary(result.toString());
     }
 
+    /**
+     * orWithBinary always returns a SBinary with value length equal to the larger binary
+     */
     @Override
     public SBinary orWithBinary(String Value) {
-        return null;
+        // does bit by bit or
+        String bigS = (Value.length() < value.length() ? value : Value);
+        int n = Math.min(Value.length(), value.length());
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < n; i++){
+            if (value.charAt(value.length() -i -1) == '1' || Value.charAt(Value.length()-i -1) == '1') {
+                result.insert(0, '1');
+            } else {
+                result.insert(0, '0');
+            }
+        }
+        // later it fills with the larger binary values
+        for (int i = n; i < bigS.length(); i++) {
+            if (bigS.charAt(bigS.length() - i - 1) == '1') {
+                result.insert(0, '1');
+            }
+            else {
+                result.insert(0, '0');
+            }
+        }
+        return new SBinary(result.toString());
     }
 
 }

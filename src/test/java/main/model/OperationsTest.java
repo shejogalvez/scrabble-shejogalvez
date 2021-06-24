@@ -1,6 +1,6 @@
 package main.model;
 
-import cl.uchile.dcc.scrabble.model.*;
+import cl.uchile.dcc.scrabble.model.types.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -85,7 +85,8 @@ public class OperationsTest {
         assertEquals(binario.getClass(), binario.plus(entero).getClass());
         assertEquals(SInt.intToBinary(29+293), ((SBinary) binario.plus(entero)).getValue());
 
-        assertNull(binario.plus(flotante));
+        assertEquals(flotante.getClass(), binario.plus(flotante).getClass());
+        assertEquals(4.2+293, ((SFloat)binario.plus(flotante)).getValue());
 
         assertNull(binario.plus(booleano));
 
@@ -99,6 +100,9 @@ public class OperationsTest {
         assertEquals(binario.getClass(), binario.minus(binario).getClass());
         assertEquals("0", ((SBinary) binario.minus(binario)).getValue());
 
+        assertEquals(flotante.getClass(), binario.minus(flotante).getClass());
+        assertEquals(293-4.2, ((SFloat)binario.minus(flotante)).getValue());
+
         SInt bigInt = new SInt(2000);
         assertEquals("0", ((SBinary) binario.minus(bigInt)).getValue());
 
@@ -109,12 +113,18 @@ public class OperationsTest {
         assertEquals(binario.getClass(), binario.mul(binario).getClass());
         assertEquals(SInt.intToBinary(293*293), ((SBinary) binario.mul(binario)).getValue());
 
+        assertEquals(flotante.getClass(), binario.mul(flotante).getClass());
+        assertEquals(4.2*293, ((SFloat)binario.mul(flotante)).getValue());
+
         //division
         assertEquals(binario.getClass(), binario.div(entero).getClass());
         assertEquals(SInt.intToBinary(293/29), ((SBinary)binario.div(entero)).getValue());
 
         assertEquals(binario.getClass(), binario.div(binario).getClass());
         assertEquals("1", ((SBinary)binario.div(binario)).getValue());
+
+        assertEquals(flotante.getClass(), binario.div(flotante).getClass());
+        assertEquals(293/4.2, ((SFloat)binario.div(flotante)).getValue());
     }
 
 
@@ -181,6 +191,18 @@ public class OperationsTest {
         assertEquals("000000000", ((SBinary)not.and(binario)).getValue());
 
         assertFalse(((SBool) booleano.not()).getValue());
+
+        SBool not_booleano = new SBool(false);
+
+        assertEquals(true, ((SBool) booleano.and(booleano)).getValue());
+
+        assertEquals(true, ((SBool) booleano.or(booleano)).getValue());
+
+        assertEquals(false, ((SBool) booleano.and(not_booleano)).getValue());
+
+        assertEquals(true, ((SBool) booleano.or(not_booleano)).getValue());
+
+        assertEquals("000000000", ((SBinary)not_booleano.and(binario)).getValue());
     }
 
     @Test
@@ -198,5 +220,21 @@ public class OperationsTest {
         assertNull(texto.mul(flotante));
 
         assertNull(texto.mul(binario));
+    }
+
+    @Test
+    void moreNullTest(){
+
+        assertNull(entero.or(flotante));
+
+        assertNull(flotante.and(binario));
+
+        assertNull(texto.not());
+
+        assertNull(binario.mul(texto));
+
+        assertNull(entero.mul(booleano));
+
+        assertNull(flotante.mul(texto));
     }
 }

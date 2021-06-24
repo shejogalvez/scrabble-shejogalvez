@@ -1,4 +1,4 @@
-package cl.uchile.dcc.scrabble.model;
+package cl.uchile.dcc.scrabble.model.types;
 
 /**
  * class that represents a real number with a double value
@@ -78,4 +78,15 @@ public class SFloat extends AbstractType {
     public STypeI mulWithFloat(double value, int mode) {
         return new SFloat(value * Math.pow(this.value, mode));
     }
+
+    @Override
+    public STypeI sumWithBinary(int value, int mode) {
+        return new SFloat(value + (this.value * mode));
+    }
+
+    @Override
+    public STypeI mulWithBinary(int value, int mode) {
+        return new SFloat(value * Math.pow(this.value, mode));
+    }
+
 }
