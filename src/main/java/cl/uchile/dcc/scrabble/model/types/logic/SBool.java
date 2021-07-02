@@ -1,4 +1,9 @@
-package cl.uchile.dcc.scrabble.model.types;
+package cl.uchile.dcc.scrabble.model.types.logic;
+
+import cl.uchile.dcc.scrabble.model.types.AbstractType;
+import cl.uchile.dcc.scrabble.model.types.SString;
+import cl.uchile.dcc.scrabble.model.types.STypeI;
+import cl.uchile.dcc.scrabble.model.types.SBinary;
 
 /**
  * creates an object of type bool
@@ -21,7 +26,7 @@ public class SBool extends AbstractType implements LogicTypeI{
      */
     @Override
     public SString toSString(){
-        return new SString(Boolean.toString(value));
+        return factory.createString(Boolean.toString(value));
     }
 
     @Override
@@ -34,7 +39,7 @@ public class SBool extends AbstractType implements LogicTypeI{
      */
     @Override
     public LogicTypeI not(){
-        return new SBool(!value);
+        return factory.createBool(!value);
     }
 
     @Override
@@ -49,17 +54,17 @@ public class SBool extends AbstractType implements LogicTypeI{
 
     @Override
     public SString sumWithString(String value) {
-        return new SString(value + this.value);
+        return factory.createString(value + this.value);
     }
 
     @Override
     public LogicTypeI andWithBool(boolean value){
-        return new SBool(value & this.value);
+        return factory.createBool(value & this.value);
     }
 
     @Override
     public LogicTypeI orWithBool(boolean value) {
-        return new SBool(value || this.value);
+        return factory.createBool(value || this.value);
     }
 
     @Override
@@ -67,14 +72,14 @@ public class SBool extends AbstractType implements LogicTypeI{
         int len = value.length();
         StringBuilder result = new StringBuilder();
         if (this.value) {
-            return new SBinary(value);
+            return factory.createBinary(value);
         }
         else{
             for (int i = len; i > 0; i--) {
                 result.insert(0, '0');
             }
         }
-        return new SBinary(result.toString());
+        return factory.createBinary(result.toString());
     }
 
     @Override
@@ -87,8 +92,8 @@ public class SBool extends AbstractType implements LogicTypeI{
             }
         }
         else{
-            return new SBinary(value);
+            return factory.createBinary(value);
         }
-        return new SBinary(result.toString());
+        return factory.createBinary(result.toString());
     }
 }

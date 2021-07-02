@@ -1,6 +1,10 @@
-package main.model;
+package main.model.types;
 
 import cl.uchile.dcc.scrabble.model.types.*;
+import cl.uchile.dcc.scrabble.model.types.logic.SBool;
+import cl.uchile.dcc.scrabble.model.types.SBinary;
+import cl.uchile.dcc.scrabble.model.types.numeric.SFloat;
+import cl.uchile.dcc.scrabble.model.types.numeric.SInt;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

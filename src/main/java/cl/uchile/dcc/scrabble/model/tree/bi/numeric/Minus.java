@@ -1,5 +1,6 @@
-package cl.uchile.dcc.scrabble.model.tree;
+package cl.uchile.dcc.scrabble.model.tree.bi.numeric;
 
+import cl.uchile.dcc.scrabble.model.tree.bi.Node2;
 import cl.uchile.dcc.scrabble.model.types.STypeI;
 
 public class Minus extends Node2 {

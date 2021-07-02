@@ -1,12 +1,18 @@
 package cl.uchile.dcc.scrabble.model.types;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import cl.uchile.dcc.scrabble.model.types.factory.TypeFactory;
+import cl.uchile.dcc.scrabble.model.types.logic.SBool;
+import cl.uchile.dcc.scrabble.model.types.numeric.NumTypeI;
+import cl.uchile.dcc.scrabble.model.types.numeric.SFloat;
+import cl.uchile.dcc.scrabble.model.types.numeric.SInt;
 
 /**
  * Abstract class that contains recurrent outputs of SType functions to avoid to copy code
  */
 public abstract class AbstractType implements STypeI{
+
+    // object to have access to Factory class create methods
+    protected final TypeFactory factory = TypeFactory.createFactory();
 
     /**
      * to(Type) : tries to transform itself (make another object) to the desired Type
@@ -72,47 +78,33 @@ public abstract class AbstractType implements STypeI{
     }
 
     @Override
-    public STypeI sumWithBinary(int Value, int mode) {
-        return null;
-    }
-
-    @Override
-    public STypeI mulWithBinary(int Value, int mode) {
-        return null;
-    }
-
-    @Override
-    public STypeI sumWithInteger(int Value, int mode) {
-        return null;
-    }
-
-    @Override
-    public STypeI mulWithInteger(int Value, int mode) {
-        return null;
-    }
-
-    @Override
-    public STypeI sumWithFloat(double Value, int mode) {
-        return null;
-    }
-
-    @Override
-    public STypeI mulWithFloat(double Value, int mode) {
-        return null;
-    }
-
-    @Override
     public STypeI solve(){
         return this;
     }
 
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this);
+    public NumTypeI sumWithBinary(int Value, int mode){
+        return null;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj);
+    public NumTypeI mulWithBinary(int Value, int mode){
+        return null;
     }
+
+    public NumTypeI sumWithInteger(int Value, int mode){
+        return null;
+    }
+
+    public NumTypeI mulWithInteger(int Value, int mode){
+        return null;
+    }
+
+    public NumTypeI sumWithFloat(double Value, int mode){
+        return null;
+    }
+
+    public NumTypeI mulWithFloat(double Value, int mode){
+        return null;
+    }
+
+
 }

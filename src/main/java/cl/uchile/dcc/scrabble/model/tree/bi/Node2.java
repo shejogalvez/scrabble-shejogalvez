@@ -1,8 +1,12 @@
-package cl.uchile.dcc.scrabble.model.tree;
+package cl.uchile.dcc.scrabble.model.tree.bi;
 
+import cl.uchile.dcc.scrabble.model.tree.NodeI;
 import cl.uchile.dcc.scrabble.model.types.STypeI;
 
-public abstract class Node2 implements NodeI{
+/**
+ * class that contains general attributes for binary operations type nodes
+ */
+public abstract class Node2 implements NodeI {
 
     protected NodeI op1;
     protected NodeI op2;

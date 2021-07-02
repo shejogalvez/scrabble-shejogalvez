@@ -1,5 +1,7 @@
-package cl.uchile.dcc.scrabble.model.tree;
+package cl.uchile.dcc.scrabble.model.tree.bi.numeric;
 
+import cl.uchile.dcc.scrabble.model.tree.bi.Node2;
+import cl.uchile.dcc.scrabble.model.tree.NodeI;
 import cl.uchile.dcc.scrabble.model.types.STypeI;
 
 public class Div extends Node2 {

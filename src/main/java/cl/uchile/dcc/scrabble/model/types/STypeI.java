@@ -2,6 +2,10 @@ package cl.uchile.dcc.scrabble.model.types;
 
 
 import cl.uchile.dcc.scrabble.model.tree.NodeI;
+import cl.uchile.dcc.scrabble.model.types.logic.SBool;
+import cl.uchile.dcc.scrabble.model.types.numeric.NumTypeI;
+import cl.uchile.dcc.scrabble.model.types.numeric.SFloat;
+import cl.uchile.dcc.scrabble.model.types.numeric.SInt;
 
 public interface STypeI extends NodeI {
 
@@ -43,21 +47,24 @@ public interface STypeI extends NodeI {
      * (operation)With(type): defines what to do when (operated) with (type).
      */
 
-    SString sumWithString(String value);
+    NumTypeI sumWithBinary(int Value, int mode);
 
-    STypeI sumWithBinary(int Value, int mode);
+    NumTypeI mulWithBinary(int Value, int mode);
 
-    STypeI mulWithBinary(int Value, int mode);
+    NumTypeI sumWithInteger(int Value, int mode);
 
-    STypeI sumWithInteger(int Value, int mode);
+    NumTypeI mulWithInteger(int Value, int mode);
 
-    STypeI mulWithInteger(int Value, int mode);
-
-    STypeI sumWithFloat(double Value, int mode);
+    NumTypeI sumWithFloat(double Value, int mode);
 
     STypeI mulWithFloat(double Value, int mode);
 
+    SString sumWithString(String value);
+
     // tree
 
+    /**
+     * @return self
+     */
     STypeI solve();
 }
