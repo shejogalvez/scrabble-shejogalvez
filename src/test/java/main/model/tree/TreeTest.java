@@ -1,11 +1,21 @@
 package main.model.tree;
 
+import cl.uchile.dcc.scrabble.model.tree.bi.And;
+import cl.uchile.dcc.scrabble.model.tree.bi.Or;
+import cl.uchile.dcc.scrabble.model.types.factory.TypeFactory;
 import cl.uchile.dcc.scrabble.model.tree.*;
+import cl.uchile.dcc.scrabble.model.tree.bi.numeric.Add;
+import cl.uchile.dcc.scrabble.model.tree.bi.numeric.Div;
+import cl.uchile.dcc.scrabble.model.tree.bi.numeric.Minus;
+import cl.uchile.dcc.scrabble.model.tree.bi.numeric.Mult;
 import cl.uchile.dcc.scrabble.model.types.*;
+import cl.uchile.dcc.scrabble.model.types.SBinary;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TreeTest {
+
+    TypeFactory typeFactory = TypeFactory.createFactory();
 
     @Test
     void solveTest(){
@@ -14,17 +24,17 @@ public class TreeTest {
                 // 28 + 6.9
                 new Or(
                         //1000 or 10100
-                        new SBinary("1000"),
+                        typeFactory.createBinary("1000"),
                         new Minus(
                                 //25-5
-                                new SInt(25),
-                                new SBinary("0101")
+                                typeFactory.createInt(25),
+                                typeFactory.createBinary("0101")
                         ).solve().toBinary()
                     ),
-                new SFloat(6.9)
+                typeFactory.createFloat(6.9)
                 ).solve();
 
-        assertEquals(new SFloat(34.9), result);
+        assertEquals(typeFactory.createFloat(34.9), result);
     }
 
     @Test
@@ -32,8 +42,8 @@ public class TreeTest {
         // no can do minus with string
         STypeI result =
                     new Minus(
-                            new SString("25"),
-                            new SBinary("0101")
+                            typeFactory.createString("25"),
+                            typeFactory.createBinary("0101")
                     ).solve();
         assertNull(result);
     }
@@ -42,32 +52,32 @@ public class TreeTest {
     void noerrorTest(){
         STypeI result =
                 new Minus(
-                        new SInt(25),
-                        new SBinary("0101")
+                        typeFactory.createInt(25),
+                        typeFactory.createBinary("0101")
                 ).solve();
-        assertEquals(new SInt(20), result);
+        assertEquals(typeFactory.createInt(20), result);
     }
 
     @Test
     void logicTreeTest(){
         SBinary a =
         new Or(
-                new SBinary("10000"),
-                new SBinary("0100")
+                typeFactory.createBinary("10000"),
+                typeFactory.createBinary("0100")
         ).solve().toBinary();
-        assertEquals(new SBinary("10100").getValue(),  a.getValue());
+        assertEquals(typeFactory.createBinary("10100").getValue(),  a.getValue());
 
         STypeI b =
             new And(
                 a,
-                new SBinary("1101")
+                typeFactory.createBinary("1101")
             ).solve();
 
-        assertEquals(new SBinary("0100"), b);
+        assertEquals(typeFactory.createBinary("0100"), b);
 
         STypeI c = new Not(b).solve();
 
-        assertEquals(new SBinary("1011"), c);
+        assertEquals(typeFactory.createBinary("1011"), c);
 
     }
 
@@ -75,18 +85,18 @@ public class TreeTest {
     void identityTest(){
         STypeI result =
                 new Div(
-                    new Mult(new SFloat(5.5),
-                        new SInt(10)),
-                    new SInt(10)
+                    new Mult(typeFactory.createFloat(5.5),
+                        typeFactory.createInt(10)),
+                    typeFactory.createInt(10)
                 ).solve();
-        assertEquals(new SFloat(5.5), result);
+        assertEquals(typeFactory.createFloat(5.5), result);
 
         STypeI result2 =
                 new Mult(
-                        new Div(new SFloat(5.5),
-                                new SInt(10)),
-                        new SInt(10)
+                        new Div(typeFactory.createFloat(5.5),
+                                typeFactory.createInt(10)),
+                        typeFactory.createInt(10)
                 ).solve();
-        assertEquals(new SFloat(5.5), result2);
+        assertEquals(typeFactory.createFloat(5.5), result2);
     }
 }

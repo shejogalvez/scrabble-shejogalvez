@@ -1,9 +1,14 @@
 package cl.uchile.dcc.scrabble.model.types;
 
+import cl.uchile.dcc.scrabble.model.types.logic.LogicTypeI;
+import cl.uchile.dcc.scrabble.model.types.numeric.NumTypeI;
+import cl.uchile.dcc.scrabble.model.types.numeric.SFloat;
+import cl.uchile.dcc.scrabble.model.types.numeric.SInt;
+
 /**
  * class that represents a positive integer with a String of 0's and 1's as value
  */
-public class SBinary extends AbstractType implements LogicTypeI{
+public class SBinary extends AbstractType implements LogicTypeI, NumTypeI {
 
     private String value;
 
@@ -29,17 +34,17 @@ public class SBinary extends AbstractType implements LogicTypeI{
 
     @Override
     public SString toSString() {
-        return new SString(value);
+        return factory.createString(value);
     }
 
     @Override
     public SFloat toFloat(){
-        return new SFloat(valueToInt());
+        return factory.createFloat(valueToInt());
     }
 
     @Override
     public SInt toInt(){
-        return new SInt(valueToInt());
+        return factory.createInt(valueToInt());
     }
 
     @Override
@@ -104,41 +109,41 @@ public class SBinary extends AbstractType implements LogicTypeI{
      */
     @Override
     public SString sumWithString(String value) {
-        return new SString(value + this.value);
+        return factory.createString(value + this.value);
     }
 
     @Override
-    public STypeI sumWithInteger(int value, int mode){
-        return new SInt(value + (valueToInt() * mode));
+    public NumTypeI sumWithInteger(int value, int mode){
+        return factory.createInt(value + (valueToInt() * mode));
     }
 
     @Override
-    public STypeI mulWithInteger(int value, int mode){
-        return new SInt((int) (value * Math.pow(valueToInt(), mode)));
+    public NumTypeI mulWithInteger(int value, int mode){
+        return factory.createInt((int) (value * Math.pow(valueToInt(), mode)));
     }
 
     @Override
-    public STypeI sumWithFloat(double value, int mode){
-        return new SFloat(value + (valueToInt() * mode));
+    public NumTypeI sumWithFloat(double value, int mode){
+        return factory.createFloat(value + (valueToInt() * mode));
     }
 
     @Override
-    public STypeI mulWithFloat(double value, int mode){
-        return new SFloat(value * Math.pow(valueToInt(), mode));
+    public NumTypeI mulWithFloat(double value, int mode){
+        return factory.createFloat(value * Math.pow(valueToInt(), mode));
     }
 
     @Override
-    public STypeI sumWithBinary(int value, int mode){
+    public NumTypeI sumWithBinary(int value, int mode){
         int value2 = valueToInt();
         String result = SInt.intToBinary((value + value2 * mode));
-        return new SBinary(result);
+        return factory.createBinary(result);
     }
 
     @Override
-    public STypeI mulWithBinary(int value, int mode){
+    public NumTypeI mulWithBinary(int value, int mode){
         int value2 = valueToInt();
         String result = SInt.intToBinary((int) (value * Math.pow(value2, mode)));
-        return new SBinary(result);
+        return factory.createBinary(result);
     }
 
     //logical
@@ -158,11 +163,11 @@ public class SBinary extends AbstractType implements LogicTypeI{
                 result.insert(0, '1');
             }
         }
-        return new SBinary(result.toString());
+        return factory.createBinary(result.toString());
     }
 
     /**
-     * applies and with bool value and every bit creating new SBinary
+     * applies and with bool value and every bit creating Factory.createBinary
      * @param obj : SBinary or SBool
      * @return SBinary
      */
@@ -172,7 +177,7 @@ public class SBinary extends AbstractType implements LogicTypeI{
     }
 
     /**
-     * applies or with bool value and every bit creating new SBinary
+     * applies or with bool value and every bit creating Factory.createBinary
      * @param obj : SBinary or SBool
      * @return SBinary
      */
@@ -191,14 +196,14 @@ public class SBinary extends AbstractType implements LogicTypeI{
         int len = this.value.length();
         StringBuilder result = new StringBuilder();
         if (value) {
-            return new SBinary(this.value);
+            return factory.createBinary(this.value);
         }
         else{
             for (int i = len; i > 0; i--) {
                 result.insert(0, '0');
             }
         }
-        return new SBinary(result.toString());
+        return factory.createBinary(result.toString());
     }
 
     @Override
@@ -211,9 +216,9 @@ public class SBinary extends AbstractType implements LogicTypeI{
             }
         }
         else{
-            return new SBinary(this.value);
+            return factory.createBinary(this.value);
         }
-        return new SBinary(result.toString());
+        return factory.createBinary(result.toString());
     }
 
     /**
@@ -232,7 +237,7 @@ public class SBinary extends AbstractType implements LogicTypeI{
             }
         }
         // when cant make comparison the rest are zeros
-        return new SBinary(result.toString());
+        return factory.createBinary(result.toString());
     }
 
     /**
@@ -260,7 +265,7 @@ public class SBinary extends AbstractType implements LogicTypeI{
                 result.insert(0, '0');
             }
         }
-        return new SBinary(result.toString());
+        return factory.createBinary(result.toString());
     }
 
 }

@@ -32,6 +32,6 @@ public class SString extends AbstractType{
 
     @Override
     public SString sumWithString(String value) {
-        return new SString(value + this.value);
+        return factory.createString(value + this.value);
     }
 }

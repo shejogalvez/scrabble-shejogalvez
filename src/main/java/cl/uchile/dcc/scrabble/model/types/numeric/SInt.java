@@ -1,9 +1,14 @@
-package cl.uchile.dcc.scrabble.model.types;
+package cl.uchile.dcc.scrabble.model.types.numeric;
+
+import cl.uchile.dcc.scrabble.model.types.AbstractType;
+import cl.uchile.dcc.scrabble.model.types.SBinary;
+import cl.uchile.dcc.scrabble.model.types.SString;
+import cl.uchile.dcc.scrabble.model.types.STypeI;
 
 /**
  * class that represents a integer with an integer value
  */
-public class SInt extends AbstractType{
+public class SInt extends AbstractType implements NumTypeI {
 
     private int value;
 
@@ -38,12 +43,12 @@ public class SInt extends AbstractType{
      */
     @Override
     public SString toSString(){
-        return new SString(Integer.toString(value));
+        return factory.createString(Integer.toString(value));
     }
 
     @Override
     public SFloat toFloat(){
-        return new SFloat(value);
+        return factory.createFloat(value);
     }
 
     @Override
@@ -53,7 +58,7 @@ public class SInt extends AbstractType{
 
     @Override
     public SBinary toBinary(){
-        return new SBinary(intToBinary(value));
+        return factory.createBinary(intToBinary(value));
     }
 
     /**
@@ -79,39 +84,41 @@ public class SInt extends AbstractType{
         return obj.mulWithInteger(value, 1);
     }
 
+
+    // double-dispatch
     @Override
     public SString sumWithString(String value) {
-        return new SString(value + this.value);
+        return factory.createString(value + this.value);
     }
 
     @Override
-    public STypeI sumWithBinary(int value, int mode) {
-        return new SBinary(intToBinary(value + (this.value * mode)));
+    public NumTypeI sumWithBinary(int value, int mode) {
+        return factory.createBinary(intToBinary(value + (this.value * mode)));
     }
 
     @Override
-    public STypeI mulWithBinary(int value, int mode) {
-        return new SBinary(intToBinary((int) (value * Math.pow(this.value, mode))));
+    public NumTypeI mulWithBinary(int value, int mode) {
+        return factory.createBinary(intToBinary((int) (value * Math.pow(this.value, mode))));
     }
 
     @Override
-    public STypeI sumWithInteger(int value, int mode) {
-        return new SInt(value + this.value * mode);
+    public NumTypeI sumWithInteger(int value, int mode) {
+        return factory.createInt(value + this.value * mode);
     }
 
     @Override
-    public STypeI mulWithInteger(int value, int mode) {
-        return new SInt((int) (value * Math.pow(this.value, mode)));
+    public NumTypeI mulWithInteger(int value, int mode) {
+        return factory.createInt((int) (value * Math.pow(this.value, mode)));
     }
 
     @Override
-    public STypeI sumWithFloat(double value, int mode) {
-        return new SFloat(value + this.value * mode);
+    public NumTypeI sumWithFloat(double value, int mode) {
+        return factory.createFloat(value + this.value * mode);
     }
 
     @Override
-    public STypeI mulWithFloat(double value, int mode) {
-        return new SFloat(value * Math.pow(this.value, mode));
+    public NumTypeI mulWithFloat(double value, int mode) {
+        return factory.createFloat(value * Math.pow(this.value, mode));
     }
 
 
