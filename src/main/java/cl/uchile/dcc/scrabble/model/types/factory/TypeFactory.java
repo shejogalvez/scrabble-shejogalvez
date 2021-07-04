@@ -32,7 +32,7 @@ public class TypeFactory {
     }
 
     /**
-     * create Type
+     * create Type, if hasn't benn created, create new. if it was created, it's returned from respective hashmap
      */
     public SInt createInt(int value) {
         if (int_map.get(Integer.toString(value)) == null) {

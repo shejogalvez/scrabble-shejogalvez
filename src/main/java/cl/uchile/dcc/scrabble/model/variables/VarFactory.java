@@ -38,7 +38,7 @@ public class VarFactory {
 
     /**
      * looks for a variable named "name" in variables_map, if exist returns it's value.
-     * if it doesn't exist returns null
+     * if it doesn't exist, returns null
      */
     public STypeI getVar(String name){
         try {
