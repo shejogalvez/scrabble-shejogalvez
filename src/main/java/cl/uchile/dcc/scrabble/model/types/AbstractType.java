@@ -1,10 +1,10 @@
 package cl.uchile.dcc.scrabble.model.types;
 
-import cl.uchile.dcc.scrabble.model.types.factory.TypeFactory;
-import cl.uchile.dcc.scrabble.model.types.logic.SBool;
 import cl.uchile.dcc.scrabble.model.types.numeric.NumTypeI;
+import cl.uchile.dcc.scrabble.model.types.numeric.SBinary;
 import cl.uchile.dcc.scrabble.model.types.numeric.SFloat;
 import cl.uchile.dcc.scrabble.model.types.numeric.SInt;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Abstract class that contains recurrent outputs of SType functions to avoid to copy code
@@ -107,4 +107,12 @@ public abstract class AbstractType implements STypeI{
     }
 
 
+    /**
+     * when comparing non numerical values, compareTo
+     * returns -2
+     */
+    @Override
+    public int compareTo(@NotNull Object o) {
+        return -2;
+    }
 }

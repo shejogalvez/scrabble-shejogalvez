@@ -1,8 +1,8 @@
 package main.model.types;
 
 import cl.uchile.dcc.scrabble.model.types.*;
-import cl.uchile.dcc.scrabble.model.types.logic.SBool;
-import cl.uchile.dcc.scrabble.model.types.SBinary;
+import cl.uchile.dcc.scrabble.model.types.SBool;
+import cl.uchile.dcc.scrabble.model.types.numeric.SBinary;
 import cl.uchile.dcc.scrabble.model.types.numeric.SFloat;
 import cl.uchile.dcc.scrabble.model.types.numeric.SInt;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,6 @@
-package cl.uchile.dcc.scrabble.model.types.logic;
+package cl.uchile.dcc.scrabble.model.types;
 
-import cl.uchile.dcc.scrabble.model.types.AbstractType;
-import cl.uchile.dcc.scrabble.model.types.SString;
-import cl.uchile.dcc.scrabble.model.types.STypeI;
-import cl.uchile.dcc.scrabble.model.types.SBinary;
+import cl.uchile.dcc.scrabble.model.types.numeric.SBinary;
 
 /**
  * creates an object of type bool
@@ -96,4 +93,6 @@ public class SBool extends AbstractType implements LogicTypeI{
         }
         return factory.createBinary(result.toString());
     }
+
+
 }

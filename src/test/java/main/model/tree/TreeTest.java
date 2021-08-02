@@ -2,14 +2,14 @@ package main.model.tree;
 
 import cl.uchile.dcc.scrabble.model.tree.bi.And;
 import cl.uchile.dcc.scrabble.model.tree.bi.Or;
-import cl.uchile.dcc.scrabble.model.types.factory.TypeFactory;
+import cl.uchile.dcc.scrabble.model.types.TypeFactory;
 import cl.uchile.dcc.scrabble.model.tree.*;
 import cl.uchile.dcc.scrabble.model.tree.bi.numeric.Add;
 import cl.uchile.dcc.scrabble.model.tree.bi.numeric.Div;
 import cl.uchile.dcc.scrabble.model.tree.bi.numeric.Minus;
 import cl.uchile.dcc.scrabble.model.tree.bi.numeric.Mult;
 import cl.uchile.dcc.scrabble.model.types.*;
-import cl.uchile.dcc.scrabble.model.types.SBinary;
+import cl.uchile.dcc.scrabble.model.types.numeric.SBinary;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

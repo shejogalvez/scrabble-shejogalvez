@@ -1,12 +1,12 @@
-package cl.uchile.dcc.scrabble.model.variables;
+package cl.uchile.dcc.scrabble.model.tree.variables;
 
-import cl.uchile.dcc.scrabble.model.tree.NodeI;
+import cl.uchile.dcc.scrabble.model.tree.AbstractNode;
 import cl.uchile.dcc.scrabble.model.types.STypeI;
 
 /**
  * class that represents a Variable, an special object that can mutate it's type and value
  */
-public class Variable implements NodeI{
+public class Variable extends AbstractNode {
 
     private STypeI value;
 
@@ -25,5 +25,7 @@ public class Variable implements NodeI{
     public STypeI solve() {
         return value;
     }
+
+
 
 }

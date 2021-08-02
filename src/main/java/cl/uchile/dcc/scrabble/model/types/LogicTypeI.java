@@ -1,7 +1,6 @@
-package cl.uchile.dcc.scrabble.model.types.logic;
+package cl.uchile.dcc.scrabble.model.types;
 
-import cl.uchile.dcc.scrabble.model.types.STypeI;
-import cl.uchile.dcc.scrabble.model.types.SBinary;
+import cl.uchile.dcc.scrabble.model.types.numeric.SBinary;
 
 /**
  * interface that encapsulates all specific methods for logic type objects

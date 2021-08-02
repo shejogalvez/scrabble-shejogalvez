@@ -1,9 +1,10 @@
-package cl.uchile.dcc.scrabble.model.types;
+package cl.uchile.dcc.scrabble.model.types.numeric;
 
-import cl.uchile.dcc.scrabble.model.types.logic.LogicTypeI;
-import cl.uchile.dcc.scrabble.model.types.numeric.NumTypeI;
-import cl.uchile.dcc.scrabble.model.types.numeric.SFloat;
-import cl.uchile.dcc.scrabble.model.types.numeric.SInt;
+import cl.uchile.dcc.scrabble.model.types.AbstractType;
+import cl.uchile.dcc.scrabble.model.types.LogicTypeI;
+import cl.uchile.dcc.scrabble.model.types.SString;
+import cl.uchile.dcc.scrabble.model.types.STypeI;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * class that represents a positive integer with a String of 0's and 1's as value
@@ -53,11 +54,8 @@ public class SBinary extends AbstractType implements LogicTypeI, NumTypeI {
     }
 
 
-    /**
-     * Operations
-     */
 
-    //numerical
+    //numerical operations
 
     /**
      * adds numerically itself with another binary or with an integer returning
@@ -131,6 +129,7 @@ public class SBinary extends AbstractType implements LogicTypeI, NumTypeI {
     public NumTypeI mulWithFloat(double value, int mode){
         return factory.createFloat(value * Math.pow(valueToInt(), mode));
     }
+
 
     @Override
     public NumTypeI sumWithBinary(int value, int mode){
@@ -268,4 +267,29 @@ public class SBinary extends AbstractType implements LogicTypeI, NumTypeI {
         return factory.createBinary(result.toString());
     }
 
+    /*
+    compareTo section
+     */
+    @Override
+    public int compareTo(@NotNull Object o) {
+        try {
+            return ((NumTypeI) o).compare(this.valueToInt());
+        }
+        catch(ClassCastException e){
+            return -2;
+        }
+    }
+
+    @Override
+    public int compare(double number) {
+        if (valueToInt() == number) {
+            return 0;
+        }
+        else {
+            if (valueToInt() < number) {
+                return 1;
+            }
+        }
+        return -1;
+    }
 }
