@@ -4,7 +4,7 @@ package cl.uchile.dcc.scrabble.model.tree;
 import cl.uchile.dcc.scrabble.model.types.STypeI;
 
 
-public class Not implements NodeI {
+public class Not extends AbstractNode {
 
     protected NodeI op1;
 

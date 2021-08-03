@@ -3,6 +3,7 @@ package cl.uchile.dcc.scrabble.model.types.numeric;
 import cl.uchile.dcc.scrabble.model.types.AbstractType;
 import cl.uchile.dcc.scrabble.model.types.SString;
 import cl.uchile.dcc.scrabble.model.types.STypeI;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * class that represents a real number with a double value
@@ -30,6 +31,14 @@ public class SFloat extends AbstractType implements NumTypeI {
     @Override
     public SFloat toFloat() {
         return this;
+    }
+
+    /**
+     * @return return SInt with the truncated value
+     */
+    @Override
+    public SInt toInt() {
+        return factory.createInt((int) value);
     }
 
     /**
@@ -93,6 +102,32 @@ public class SFloat extends AbstractType implements NumTypeI {
     @Override
     public NumTypeI mulWithBinary(int value, int mode) {
         return factory.createFloat(value * Math.pow(this.value, mode));
+    }
+
+    /*
+    compareTo section
+     */
+    @Override
+    public int compareTo(@NotNull Object o) {
+        try {
+            return ((NumTypeI) o).compare(this.value);
+        }
+        catch(ClassCastException e){
+            return -2;
+        }
+    }
+
+    @Override
+    public int compare(double number) {
+        if (value == number) {
+            return 0;
+        }
+        else {
+            if (value < number) {
+                return 1;
+            }
+        }
+        return -1;
     }
 
 }

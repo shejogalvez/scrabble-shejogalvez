@@ -25,4 +25,8 @@ public interface NumTypeI extends STypeI {
     NumTypeI sumWithFloat(double Value, int mode);
 
     NumTypeI mulWithFloat(double Value, int mode);
+
+    // compareTo followup
+
+    int compare(double number);
 }

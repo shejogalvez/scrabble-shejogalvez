@@ -1,8 +1,6 @@
-package cl.uchile.dcc.scrabble.model.types.factory;
+package cl.uchile.dcc.scrabble.model.types;
 
-import cl.uchile.dcc.scrabble.model.types.*;
 import cl.uchile.dcc.scrabble.model.types.numeric.*;
-import cl.uchile.dcc.scrabble.model.types.logic.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;

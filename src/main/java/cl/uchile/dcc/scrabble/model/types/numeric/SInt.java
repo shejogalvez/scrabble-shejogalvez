@@ -1,9 +1,9 @@
 package cl.uchile.dcc.scrabble.model.types.numeric;
 
 import cl.uchile.dcc.scrabble.model.types.AbstractType;
-import cl.uchile.dcc.scrabble.model.types.SBinary;
 import cl.uchile.dcc.scrabble.model.types.SString;
 import cl.uchile.dcc.scrabble.model.types.STypeI;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * class that represents a integer with an integer value
@@ -121,5 +121,30 @@ public class SInt extends AbstractType implements NumTypeI {
         return factory.createFloat(value * Math.pow(this.value, mode));
     }
 
+    /*
+    compareTo section
+     */
+    @Override
+    public int compareTo(@NotNull Object o) {
+        try {
+            return ((NumTypeI) o).compare(this.value);
+        }
+        catch(ClassCastException e){
+            return -2;
+        }
+    }
+
+    @Override
+    public int compare(double number) {
+        if (value == number) {
+            return 0;
+        }
+        else {
+            if (value < number) {
+                return 1;
+            }
+        }
+        return -1;
+    }
 
 }
